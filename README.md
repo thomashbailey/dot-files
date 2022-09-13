@@ -1,1 +1,1 @@
-git submodule update --init --remote --recursive
+execute `bash setup.sh` will setup these dot-files

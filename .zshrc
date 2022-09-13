@@ -1,17 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-
-source $HOME/.ohmyzsh
-if [[ -d $HOME/powerlevel10k ]]; then source $HOME/powerlevel10k/powerlevel10k.zsh-theme; fi
-
-# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-# fi
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 tmux='tmux -2'
 export DISPLAY=":0"
 export TERM=screen-256color
@@ -35,24 +21,63 @@ alias adb="$ANDROID_HOME/platform-tools/adb"
 export PATH="/usr/local/opt/libpq/bin:$PATH"
 export PATH="/Users/t/Library/Python/3.9/bin:$PATH"
 
+if [[ $(uname -m) =~ "arm64" ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+if [[ -d $HOME/fvm ]]; then
+  PATH="$PATH:$HOME/fvm/default/bin"
+fi
+
 
 # Functions
 function current() {
-  if [[ $(ls .git 2>/dev/null) ]]; then echo $(git brach --show-current); fi
+  if [[ $(ls .git 2>/dev/null) ]]; then echo $(git branch --show-current); fi
 }
 
 
 # Aliases
-alias gs="git status 2>/dev/null"
+alias gs="git status"
 alias gfp="git fetch && git pull origin $(current)"
-export FZF_PATH=$(which fzf)
-alias fzf="$FZF_PATH --preview='bat --color=always --style=numbers {}' \
-  --bind 'shift-up:preview-page-up,shift-down:preview-page-down' \
-  --bind 'ctrl-o:execute(vim {})+abort,ctrl-y:execute-silent(echo {} | pbcopy).abort'"
+
+if [[ -n $(brew list | grep fzf) ]]; then
+  if [[ $(uname -m) =~ "arm64" ]]; then
+    export FZF_BASE="/opt/homebrew/bin/fzf"
+  else
+    export FZF_BASE="/usr/local/bin/fzf"
+  fi
+  alias fzf="$FZF_BASE --preview='bat --color=always --style=numbers {}' \
+    --bind 'shift-up:preview-page-up,shift-down:preview-page-down' \
+    --bind 'ctrl-o:execute(vim {})+abort,ctrl-y:execute-silent(echo {} | pbcopy).abort'"
+fi
+
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+
+export ZSH_CUSTOM="$HOME/.oh-my-zsh-plugins"
+source $HOME/.ohmyzshrc
+
+if [[ -d $HOME/.oh-my-zsh-plugins/themes/powerlevel10k ]]; then 
+  source $HOME/.oh-my-zsh-plugins/themes/powerlevel10k/powerlevel10k.zsh-theme; 
+fi
+
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f $HOME/.p10k.zsh ]] || source $HOME/.p10k.zsh
+
 
 
 # This is where you can source your machine specifc stuff
-if [[ -r $HOME/.myzsh ]]; then source $HOME/.myzsh; fi
+# Just name your file .myzhsrc
+if [[ -r $HOME/.myzshrc ]]; then source $HOME/.myzshrc; fi
+
+
+
 
 
 # Ruby Stuff

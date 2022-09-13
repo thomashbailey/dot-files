@@ -31,3 +31,15 @@
 [submodule ".vim/pack/vendor/start/fzf"]
 	path = .vim/pack/vendor/start/fzf
 	url = https://github.com/junegunn/fzf.git
+[submodule ".oh-my-zsh"]
+	path = .oh-my-zsh
+	url = https://github.com/ohmyzsh/ohmyzsh.git
+[submodule ".oh-my-zsh-plugins/themes/powerlevel10k"]
+	path = .oh-my-zsh-plugins/themes/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k.git
+[submodule ".oh-my-zsh-plugins/plugins/zsh-autosuggestions"]
+	path = .oh-my-zsh-plugins/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule ".oh-my-zsh-plugins/plugins/zsh-syntax-highlighting"]
+	path = .oh-my-zsh-plugins/plugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git

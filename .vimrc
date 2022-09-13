@@ -57,7 +57,7 @@ autocmd BufNewFile,BufRead *.gitcommit setlocal filetype=gitcommit
 let g:sneak#label = 1
 
 " FZF options
-set rtp+="${FZF_PATH}"
+set rtp+="${FZF_BASE}"
 " let g:fzf_command_prefix = 'Fzf'
 
 " This is the default option:
