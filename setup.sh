@@ -4,7 +4,7 @@ git submodule update --init --remote --recursive
 
 ln -sf $(pwd)/.oh-my-zsh $HOME
 ln -sf $(pwd)/.oh-my-zsh-plugins $HOME
-ln -sf $(pwd)/.zshrc $HOME 
+ln -sf $(pwd)/.zshrc $HOME/.zprofile 
 ln -sf $(pwd)/.ohmyzshrc $HOME 
 ln -sf $(pwd)/.p10k.zsh $HOME 
 ln -sf $(pwd)/.zshrc $HOME 
