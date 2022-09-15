@@ -44,7 +44,8 @@ fi
 
 # This is where you can source your machine specifc stuff
 # Just name your file .myzhsrc
-if [[ -r $HOME/.myzshrc ]]; then source $HOME/.myzshrc; fi
+if [[ -r $HOME/.myzprofile ]]; then source $HOME/.myzprofile; fi
+
 
 
 # Ruby Stuff

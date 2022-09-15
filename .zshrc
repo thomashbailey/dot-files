@@ -15,6 +15,10 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f $HOME/.p10k.zsh ]] || source $HOME/.p10k.zsh
+
+
 # Functions
 function current() {
   if [[ $(ls .git 2>/dev/null) ]]; then echo $(git branch --show-current); fi
@@ -25,6 +29,8 @@ alias gs="git status"
 alias gfp="git fetch && git pull origin $(current)"
 alias adb="$ANDROID_HOME/platform-tools/adb"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f $HOME/.p10k.zsh ]] || source $HOME/.p10k.zsh
+# This is where you can source your machine specifc stuff
+# Just name your file .myzhsrc
+if [[ -r $HOME/.myzshrc ]]; then source $HOME/.myzshrc; fi
+
 
