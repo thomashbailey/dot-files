@@ -33,4 +33,5 @@ alias adb="$ANDROID_HOME/platform-tools/adb"
 # Just name your file .myzhsrc
 if [[ -r $HOME/.myzshrc ]]; then source $HOME/.myzshrc; fi
 
-
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
