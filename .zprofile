@@ -33,7 +33,7 @@ fi
 
 
 # This is where you can source your machine specifc stuff
-# Just name your file .myzhsrc
+# Just name your file .myzprofile
 if [[ -r $HOME/.myzprofile ]]; then source $HOME/.myzprofile; fi
 
 
