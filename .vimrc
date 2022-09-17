@@ -6,6 +6,9 @@ set noerrorbells
 set vb t_vb=
 set number
 set relativenumber
+set nocompatible
+set hidden
+set nocp
 
 colorscheme atom-dark
 
@@ -31,6 +34,8 @@ map <leader>ff :Files<CR>
 map <leader>n :set number! <CR>
 map <leader>tt :FloatermToggle --autoclose=2<CR>
 map <leader>r :set relativenumber! <CR>
+
+nnoremap <silent> <Leader>f :Rg<CR>
  
 " Use sed to figure out key codes
 " ^[[1;3A option up arrow so ^[ = <ESC>

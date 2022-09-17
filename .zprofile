@@ -1,4 +1,5 @@
 tmux='tmux -2'
+
 export DISPLAY=":0"
 export TERM=screen-256color
 export GREP_OPTIONS="--color=always"
@@ -29,17 +30,6 @@ if [[ -d $HOME/fvm ]]; then
 fi
 
 
-
-if [[ -n $(brew list | grep fzf) ]]; then
-  if [[ $(uname -m) =~ "arm64" ]]; then
-    export FZF_BASE="/opt/homebrew/bin/fzf"
-  else
-    export FZF_BASE="/usr/local/bin/fzf"
-  fi
-  alias fzf="$FZF_BASE --preview='bat --color=always --style=numbers {}' \
-    --bind 'shift-up:preview-page-up,shift-down:preview-page-down' \
-    --bind 'ctrl-o:execute(vim {})+abort,ctrl-y:execute-silent(echo {} | pbcopy).abort'"
-fi
 
 
 # This is where you can source your machine specifc stuff
