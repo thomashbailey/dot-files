@@ -2,9 +2,9 @@
 
 git submodule update --init --remote --recursive
 
-// TODO: install brew if its not installed
+# TODO: install brew if its not installed
 
-// TODO: install bat, fzf, rg if not installed
+# TODO: install bat, fzf, rg if not installed
 
 
 ln -sf $(pwd)/.oh-my-zsh $HOME
