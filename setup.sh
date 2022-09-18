@@ -2,10 +2,13 @@
 
 git submodule update --init --remote --recursive
 
-# TODO: install brew if its not installed
+if [[ ! -f $(which brew) ]]; then
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"  
+fi
 
-# TODO: install bat, fzf, rg if not installed
-
+if [[ ! $(brew list bat) =~ "bat" ]]; then brew install bat; fi
+if [[ ! $(brew list fzf) =~ "fzf" ]]; then brew install fzf; fi
+if [[ ! $(brew list rg) =~ "ripgrep" ]]; then brew install rg; fi
 
 ln -sf $(pwd)/.oh-my-zsh $HOME
 ln -sf $(pwd)/.oh-my-zsh-plugins $HOME
