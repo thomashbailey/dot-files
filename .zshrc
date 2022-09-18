@@ -34,9 +34,11 @@ if [[ -n $(brew list | grep fzf) ]]; then
     export FZF_BASE="/usr/local/bin/fzf"
   fi
   alias fzf="$FZF_BASE --preview='bat --color=always --style=numbers {}' \
-    --bind 'shift-up:preview-page-up,shift-down:preview-page-down' \
+    --bind 'ctrl-o:execute(vim {})+abort' \
     --bind 'ctrl-v:execute(code {1})+cancel' \
-    --bind 'ctrl-o:execute(vim {})+abort,ctrl-y:execute-silent(echo {} | pbcopy).abort'"
+    --bind 'ctrl-y:execute(echo {} | pbcopy)+abort' \
+    --bind 'shift-up:preview-page-up,shift-down:preview-page-down' \
+      "
 fi
 
 fif() {
@@ -52,32 +54,13 @@ fif() {
     "$1" \
     | awk -F  ":" '/1/ {start = $2<5 ? 0 : $2 - 5; end = $2 + 5; print $1 " " $2 " " $3 " " start ":" end}' \
     | fzf \
+    --bind 'ctrl-y:execute(echo {} | pbcopy)+abort' \
     --bind 'ctrl-o:execute(vim "+call cursor({2},{3})" {1})+cancel' \
     --bind 'ctrl-v:execute(code --goto {1}:{2}:{3})+cancel' \
+    --preview-window wrap \
     --preview 'bat --wrap character --color always {1} --highlight-line {2} --line-range {4}' \
-    --preview-window wrap
   }
   
-# fif() {
-#   rg  \
-#     --column \
-#     --no-heading \
-#     --fixed-strings \
-#     --ignore-case \
-#     --hidden \
-#     --follow \
-#     --glob '!.git/*' \
-#     --glob '!.vscode-server/*' \
-#     "$1" \
-#     | awk -F  ":" '/1/ {start = $2<5 ? 0 : $2 - 5; end = $2 + 5; print $1 " " $2 " " $3 " " start ":" end}' \
-#     | fzf \
-#     --bind 'ctrl-o:execute(vim "+call cursor({2},{3})" {1})+cancel' \
-#     --bind 'ctrl-v:execute(code --goto {1}:{2}:{3})+cancel' \
-#     --preview 'bat --wrap character --color always {1} --highlight-line {2} --line-range {4}' \
-#     --preview-window wrap
-#   }
-
-
 # This is where you can source your machine specifc stuff
 # Just name your file .myzhsrc
 if [[ -r $HOME/.myzshrc ]]; then source $HOME/.myzshrc; fi

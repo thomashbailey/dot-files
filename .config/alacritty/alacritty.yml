@@ -231,7 +231,7 @@ schemes:
       foreground: '#bbc2cf'
     cursor:
       text: CellBackground
-      cursor: '#ffffff'
+      cursor: '#c678dd'
     selection:
       text: CellForeground
       background: '#3e4451'

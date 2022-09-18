@@ -16,6 +16,7 @@ syntax on
 filetype plugin on
 filetype indent on
 set omnifunc=syntaxcomplete#Complete
+set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 
 set ts=2
 set sts=2
