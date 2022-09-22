@@ -27,19 +27,30 @@ alias gs="git status"
 alias gfp="git fetch && git pull origin $(current)"
 alias adb="$ANDROID_HOME/platform-tools/adb"
 
-if [[ -n $(brew list | grep fzf) ]]; then
-  if [[ $(uname -m) =~ "arm64" ]]; then
-    export FZF_BASE="/opt/homebrew/bin/fzf"
-  else
-    export FZF_BASE="/usr/local/bin/fzf"
-  fi
-  alias fzf="$FZF_BASE --preview='bat --color=always --style=numbers {}' \
-    --bind 'ctrl-o:execute(vim {})+abort' \
-    --bind 'ctrl-v:execute(code {1})+cancel' \
-    --bind 'ctrl-y:execute(echo {} | pbcopy)+abort' \
-    --bind 'shift-up:preview-page-up,shift-down:preview-page-down' \
-      "
-fi
+ # Change behavior of fzf dialogue
+ export FZF_DEFAULT_OPTS="--no-mouse --height 70% -1 --reverse --multi --inline-info \
+   --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || \
+   (bat --color=always --style=numbers {} || cat {}) 2> /dev/null | head -300' \
+   --preview-window='right:wrap' \
+   --bind='f2:toggle-preview' \
+   --bind='f3:execute(bat --style=numbers {} || less -f {})' \
+   --bind='ctrl-o:execute(vim {})' \
+   --bind='ctrl-v:execute(code {1})+cancel' \
+   --bind='ctrl-y:execute(echo {} | pbcopy)+abort' \
+   --bind='ctrl-d:half-page-down,ctrl-u:half-page-up' \
+   --bind='shift-up:preview-page-up,shift-down:preview-page-down' \
+   "
+
+ # Exclude those directories even if not listed in .gitignore, or if .gitignore is missing
+ FD_OPTIONS="--follow --exclude .git --exclude node_modules"
+
+ # Change find backend
+ # Use 'git ls-files' when inside GIT repo, or fd otherwise
+ export FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard | fd --type f --type l $FD_OPTIONS"
+
+ # Find commands for "Ctrl+T" and "Opt+C" shortcuts
+ export FZF_CTRL_T_COMMAND="fd $FD_OPTIONS"
+ export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
 
 fif() {
   rg  \

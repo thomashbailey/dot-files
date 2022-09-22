@@ -9,6 +9,7 @@ fi
 if [[ ! $(brew list bat) =~ "bat" ]]; then brew install bat; fi
 if [[ ! $(brew list fzf) =~ "fzf" ]]; then brew install fzf; fi
 if [[ ! $(brew list rg) =~ "ripgrep" ]]; then brew install rg; fi
+if [[ ! $(brew list fd) =~ "fd" ]]; then brew install fd; fi
 
 ln -sf $(pwd)/.oh-my-zsh $HOME
 ln -sf $(pwd)/.oh-my-zsh-plugins $HOME
