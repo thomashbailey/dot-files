@@ -22,6 +22,10 @@ function current() {
   if [[ $(ls .git 2>/dev/null) ]]; then echo $(git branch --show-current); fi
 }
 
+function addTextToTopOfFile() {
+  sed -i '' "1s|^|${1}\n|" "$2"
+}
+
 # To enable curses based pinentry 
 export GPG_TTY=$(tty)
 
