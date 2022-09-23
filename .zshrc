@@ -27,6 +27,9 @@ alias gs="git status"
 alias gfp="git fetch && git pull origin $(current)"
 alias adb="$ANDROID_HOME/platform-tools/adb"
 
+# bat --list-themes 
+export BAT_THEME="Sublime Snazzy"  
+
  # Change behavior of fzf dialogue
  export FZF_DEFAULT_OPTS="--no-mouse --height 70% -1 --reverse --multi --inline-info \
    --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || \
@@ -66,7 +69,7 @@ fif() {
     | awk -F  ":" '/1/ {start = $2<5 ? 0 : $2 - 5; end = $2 + 5; print $1 " " $2 " " $3 " " start ":" end}' \
     | fzf \
     --bind 'ctrl-y:execute(echo {} | pbcopy)+abort' \
-    --bind 'ctrl-o:execute(vim "+call cursor({2},{3})" {1})+cancel' \
+    --bind 'ctrl-o:execute(vim "+call cursor({2},{3})" {1})' \
     --bind 'ctrl-v:execute(code --goto {1}:{2}:{3})+cancel' \
     --preview-window wrap \
     --preview 'bat --wrap character --color always {1} --highlight-line {2} --line-range {4}' \
