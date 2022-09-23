@@ -22,6 +22,9 @@ function current() {
   if [[ $(ls .git 2>/dev/null) ]]; then echo $(git branch --show-current); fi
 }
 
+# To enable curses based pinentry 
+export GPG_TTY=$(tty)
+
 # Aliases
 alias gs="git status"
 alias gfp="git fetch && git pull origin $(current)"
