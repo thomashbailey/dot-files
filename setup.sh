@@ -20,6 +20,7 @@ ln -sf $(pwd)/.p10k.zsh $HOME
 ln -sf $(pwd)/.zshrc $HOME
 ln -sf $(pwd)/.vimrc $HOME
 ln -sf $(pwd)/.vim $HOME
+ln -sf $(pwd)/.tmux/ $HOME
 ln -sf $(pwd)/.tmux.conf $HOME
 
 mkdir -p $HOME/.config/alacritty

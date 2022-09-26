@@ -23,7 +23,12 @@ function current() {
 }
 
 function addTextToTopOfFile() {
-  sed -i '' "1s|^|${1}\n|" "$2"
+  if [[ $# -lt 2 ]]; 
+  then
+    echo "add what to what?";
+  else 
+    sed -i '' "1s|^|${1}\n|" "$2"
+  fi
 }
 
 # To enable curses based pinentry 
@@ -82,9 +87,13 @@ fif() {
     --preview 'bat --wrap character --color always {1} --highlight-line {2} --line-range {4}' \
   }
   
+source "$HOME/.cargo/env"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 # This is where you can source your machine specifc stuff
 # Just name your file .myzhsrc
 if [[ -r $HOME/.myzshrc ]]; then source $HOME/.myzshrc; fi
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
