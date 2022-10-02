@@ -20,8 +20,9 @@ ln -sf $(pwd)/.p10k.zsh $HOME
 ln -sf $(pwd)/.zshrc $HOME
 ln -sf $(pwd)/.vimrc $HOME
 ln -sf $(pwd)/.vim $HOME
-ln -sf $(pwd)/.tmux/ $HOME
-ln -sf $(pwd)/.tmux.conf $HOME
+ln -sf $(pwd)/.tmux $HOME
+ln -sf $(pwd)/.tmux/.tmux.conf $HOME/.tmux.conf
+ln -sf $(pwd)/.tmux/.tmux-powerlinerc $HOME/.tmux-powerlinerc
 
 mkdir -p $HOME/.config/alacritty
 ln -sf $(pwd)/.config/alacritty/alacritty.yml $HOME/.config/alacritty/alacritty.yml
@@ -29,5 +30,7 @@ ln -sf $(pwd)/.config/alacritty/alacritty.yml $HOME/.config/alacritty/alacritty.
 if [[ ! -f "${HOME}/Library/MesloLGS NF Regular.ttf" ]]; then
   cp .config/alacritty/*.ttf $HOME/Library/fonts
 fi
+
+cp .tmux/powerline.sh .tmux/tmux-powerline
 
 zsh

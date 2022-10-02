@@ -19,7 +19,7 @@ fi
 
 # Functions
 function current() {
-  if [[ $(ls .git 2>/dev/null) ]]; then echo $(git branch --show-current); fi
+  if [[ $(ls .git 2>/dev/null) ]]; then echo $(git branch --show-current 2>/dev/null); fi
 }
 
 function addTextToTopOfFile() {
@@ -95,5 +95,4 @@ source "$HOME/.cargo/env"
 # This is where you can source your machine specifc stuff
 # Just name your file .myzhsrc
 if [[ -r $HOME/.myzshrc ]]; then source $HOME/.myzshrc; fi
-
 
