@@ -49,3 +49,6 @@
 [submodule ".vim/pack/vendor/start/rus.vim"]
 	path = .vim/pack/vendor/start/rus.vim
 	url = https://github.com/rust-lang/rust.vim.git
+[submodule ".vim/pack/vendor/start/coc-rust-analyzer"]
+	path = .vim/pack/vendor/start/coc-rust-analyzer
+	url = https://github.com/fannheyward/coc-rust-analyzer.git
