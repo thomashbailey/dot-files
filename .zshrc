@@ -22,6 +22,10 @@ function current() {
   if [[ $(ls .git 2>/dev/null) ]]; then echo $(git branch --show-current 2>/dev/null); fi
 }
 
+function gfp() {
+  git fetch && git pull origin $(current)
+}
+
 function addTextToTopOfFile() {
   if [[ $# -lt 2 ]]; 
   then
@@ -35,8 +39,7 @@ function addTextToTopOfFile() {
 export GPG_TTY=$(tty)
 
 # Aliases
-alias gs="git status"
-alias gfp="git fetch && git pull origin $(current)"
+alias gs="git status 2>/dev/null"
 alias adb="$ANDROID_HOME/platform-tools/adb"
 
 # bat --list-themes 
