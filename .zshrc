@@ -40,6 +40,7 @@ export GPG_TTY=$(tty)
 
 # Aliases
 alias gs="git status 2>/dev/null"
+alias glt="git rev-list --tags --max-count=1"
 alias adb="$ANDROID_HOME/platform-tools/adb"
 
 # bat --list-themes 
