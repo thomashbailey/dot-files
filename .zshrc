@@ -1,7 +1,8 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-
+ 
+export EDITOR=vim
 export ZSH_CUSTOM="$HOME/.oh-my-zsh-plugins"
 source $HOME/.ohmyzshrc
 
@@ -22,6 +23,10 @@ function current() {
   if [[ $(ls .git 2>/dev/null) ]]; then echo $(git branch --show-current 2>/dev/null); fi
 }
 
+function delete-branch() {
+  git branch 2>/dev/null | grep --invert-match '\*' | fzf --multi | xargs -I {} git branch -D {} 2>/dev/null
+}
+
 function gfp() {
   git fetch && git pull origin $(current)
 }
@@ -40,7 +45,7 @@ export GPG_TTY=$(tty)
 
 # Aliases
 alias gs="git status 2>/dev/null"
-alias glt="git rev-list --tags --max-count=1"
+alias glt="git describe --tags $(git rev-list --tags --max-count=1 2>/dev/null) 2>/dev/null"
 alias adb="$ANDROID_HOME/platform-tools/adb"
 
 # bat --list-themes 
@@ -49,7 +54,7 @@ export BAT_THEME="Sublime Snazzy"
  # Change behavior of fzf dialogue
  export FZF_DEFAULT_OPTS="--no-mouse --height 70% -1 --reverse --multi --inline-info \
    --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || \
-   (bat --color=always --style=numbers {} || cat {}) 2> /dev/null | head -300' \
+       (bat --color=always --style=numbers {} || cat {}) 2> /dev/null | head -300' \
    --preview-window='right:wrap' \
    --bind='f2:toggle-preview' \
    --bind='f3:execute(bat --style=numbers {} || less -f {})' \
@@ -90,7 +95,7 @@ fif() {
     --preview-window wrap \
     --preview 'bat --wrap character --color always {1} --highlight-line {2} --line-range {4}' \
   }
-  
+
 source "$HOME/.cargo/env"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
