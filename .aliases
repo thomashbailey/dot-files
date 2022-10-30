@@ -1,0 +1,6 @@
+ # Aliases
+
+alias gs="git status 2>/dev/null"
+alias glt="git describe --tags $(git rev-list --tags --max-count=1 2>/dev/null) 2>/dev/null"
+alias adb="$ANDROID_HOME/platform-tools/adb"
+

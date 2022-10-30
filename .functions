@@ -1,0 +1,28 @@
+
+
+function current() {
+  if [[ $(ls .git 2>/dev/null) ]]; then echo $(git branch --show-current 2>/dev/null); fi
+}
+
+function delete-branches() {
+  local branches
+  branches=($(git branch 2>/dev/null | grep --invert-match '\*' | fzf --multi))
+  if [[ -z $branches ]]; then
+     echo "No branches selected";
+  else 
+    for d in ${branches[@]}; do git branch -D $d 2>/dev/null; done    
+  fi
+}
+
+function gfp() {
+  git fetch && git pull origin $(current)
+}
+
+function addTextToTopOfFile() {
+  if [[ $# -lt 2 ]];
+  then
+    echo "add what to what?";
+  else
+    sed -i '' "1s|^|${1}\n|" "$2"
+  fi
+}

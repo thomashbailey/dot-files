@@ -18,6 +18,8 @@ ln -sf $(pwd)/.zprofile $HOME/.zprofile
 ln -sf $(pwd)/.ohmyzshrc $HOME
 ln -sf $(pwd)/.p10k.zsh $HOME
 ln -sf $(pwd)/.zshrc $HOME
+ln -sf $(pwd)/.aliases $HOME
+ln -sf $(pwd)/.functions $HOME
 ln -sf $(pwd)/.vimrc $HOME
 ln -sf $(pwd)/.vim $HOME
 ln -sf $(pwd)/.tmux $HOME
