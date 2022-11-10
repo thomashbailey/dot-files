@@ -73,8 +73,8 @@ source $HOME/.p10k.zsh
 source "$HOME/.cargo/env"
 
 # source functions and aliases
-source .aliases
-source .functions
+source $HOME/.aliases
+source $HOME/.functions
 
 # This is where you can source your machine specifc stuff
 # Just name your file .myzhsrc
